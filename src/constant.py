@@ -1,0 +1,76 @@
+CONF_STORE_BUCKET_NAME = "storage_bucket_name"
+CONF_BUCKET_NAME = "bucket_name"
+CONF_MODEL_DIR = "model_dir"
+
+
+CONF_DATA_LOADER = "loader"
+CONF_LOADER_SRC_BUCKET_NAME = "src_bucket_name"
+CONF_LOADER_DEST_BUCKET_NAME = "dest_bucket_name"
+CONF_LOADER_DIR_NAME = "dir_name"
+CONF_F6S_FILE_NAME = "f6s_file_name_list"
+CONF_LOADER_OUTPUT_DIR = "output_dir"
+CONF_MAKE_DS_OUT_DIR = "make_dataset_out_dir"
+CONF_F6S_21_22_COLS_LIST = "col_set_21_22"
+CONF_F6S_18_COLS_LIST = "col_set_18"
+CONF_F6S_19_COLS_LIST = "col_set_19"
+CONF_F6S_20_COLS_LIST = "col_set_20"
+CONF_ADVISOR_DIR = "advisor_dir_name"
+CONF_ADVISOR_FILE_NAME = "advisor_file_name"
+CONF_ADVISOR_MERGE_COLS = "advisor_merge_cols"
+
+
+
+CONF_DATA_CLEANING = "cleaning"
+CONF_CLEAN_SAVE_DIR = "save_dir"
+CONF_F6S_TEXT_COLS = "f6s_text_cols"
+CONF_F6S_TABULAR_COLS = "f6s_tab_cols"
+CONF_F6S_DROPNA_COLS = "f6s_dropna_cols"
+CONF_ADV_DROPNA_COLS = "adv_dropna_cols"
+CONF_ADV_DROP_COLS = "adv_drop_cols"
+CONF_ADV_TEXT_COLS = "adv_text_cols"
+CONF_ADV_TABULAR_COLS = "adv_tab_cols"
+
+
+
+CONF_FEATURE_ENGINEERING = "feature_engineering"
+CONF_FE_SAVE_DIR = "save_dir"
+CONF_F6S_FE_DROP_COLS = "f6s_engg_drop_cols"
+CONF_F6S_FE_TEXT_COLS = "f6s_engg_text_cols"
+CONF_VECTOR_SIZE = "vector_size"
+CONF_WINDOW_SIZE = "window"
+CONF_F6S_NON_TEXT_DIM = "f6s_non_text_dim_red"
+CONF_F6S_TEXT_DIM = "f6s_text_dim_red"
+CONF_F6S_CONCAT_DIM = "f6s_concat_dim_red"
+CONF_ADV_NON_TEXT_DIM = "adv_non_text_dim_red"
+CONF_ADV_TEXT_DIM = "adv_text_dim_red"
+CONF_ADV_CONCAT_DIM = "adv_concat_dim_red"
+
+
+CONF_COMP_CLUST = "company_clustering"
+CONF_F6S_N_CLUSTER = "f6s_n_clusters"
+CONF_F6S_MAX_ITER = "f6s_max_iter"
+CONF_F6S_N_INIT = "f6s_n_init"
+CONF_F6S_CLUSTER_COLS = "f6s_cluster_cols"
+CONF_CC_SAVE_DIR = "save_dir"
+CONF_CC_SAVE_FILE = "f6s_save_file"
+CONF_ADV_N_CLUSTER = "adv_n_clusters"
+CONF_ADV_MAX_ITER = "adv_max_iter"
+CONF_ADV_N_INIT = "adv_n_init"
+CONF_ADV_CLUSTER_COLS = "adv_cluster_cols"
+CONF_ADV_SAVE_FILE = "adv_save_file"
+
+
+CONF_MATCHMAKING = "matchmaking"
+CONF_BCKT = "src_bucket_name"
+CONF_DIR = "dir_name"
+CONF_ADV_FILE_NAMES = "adv_file_names"
+CONF_PROCESSED_DIR = "processed_dir"
+CONF_REPORT_DIR = "report_dir"
+CONF_REPORT_FILES = "report_files"
+CONF_RESULT_DIR = "result_dir"
+CONF_RESULT_FILE = "result_file"
+CONF_GRADING_DIR = "grading_file_dir_name"
+CONF_GRADING_FILE = "grading_file_names"
+CONF_GRADING_COL = "grading_cols"
+
+

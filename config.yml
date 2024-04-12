@@ -1,0 +1,218 @@
+bucket_name: "holt"
+raw_data: "data/raw_data/"
+
+loader:
+    src_bucket_name: "holt"
+    dir_name: "data/raw_data/"
+    dest_bucket_name: "holt"
+    f6s_file_name_list: ["2018 (3).csv","2019 (2).csv","2020 (3).csv","2021 (3).csv","2022 (10).csv"]
+    output_dir: "/Users/zarreen/Documents/HOLT/holt-final-delivery/data/raw/"
+    make_dataset_out_dir: "/Users/zarreen/Documents/HOLT/holt-final-delivery/data/processed/"
+    col_set_21_22: ["Startup/Person Name",
+    "Application ID",
+    "City",
+    "Country",
+    "Date Created",
+    "Key customers/users?",
+    "Brief Description",
+    "Skills or Markets",
+    "When did you start this company?",
+    "Are you registered or incorporated?",
+    "What do you do in detail?",
+    "What's different/interesting about your Startup?",
+    "Question 2: What industry best defines your business problem and solution?",
+    "Question 5: Who are your target customers?",
+    "Question 6: What is your product solution and how does it work?",
+    "Question 7: What technology are you using as an enabler?"]
+    col_set_18: ["Startup/Person Name",
+    "Application ID",
+    "City",
+    "Country",
+    "Date Created",
+    "Key customers/users?",
+    "Brief Description",
+    "Skills or Markets",
+    "When did you start this company?",
+    "Are you registered or incorporated?",
+    "What do you do in detail?",
+    "What's different/interesting about your Startup?",
+    "Question 1: What market are you addressing?",
+    "Question 4: How does your solution work?",
+    "Question 13: Are you using AI, or planning to use AI? Please explain.",
+    "Question 14: Any other types of technologies you are using that you would like to mention?"]
+    col_set_19: ["Startup/Person Name",
+    "Application ID",
+    "City",
+    "Country",
+    "Date Created",
+    "Key customers/users?",
+    "Brief Description",
+    "Skills or Markets",
+    "When did you start this company?",
+    "Are you registered or incorporated?",
+    "What do you do in detail?",
+    "What's different/interesting about your Startup?",
+    "Question 1: What market are you addressing?",
+    "Question 5: How does your solution work?",
+    "Question 23: Are you using AI, or planning to use AI? Please explain.",
+    "Question 24: Any other types of technologies you are using that you would like to mention?"]
+    col_set_20: ["Startup/Person Name",
+    "Application ID",
+    "City",
+    "Country",
+    "Date Created",
+    "Key customers/users?",
+    "Brief Description",
+    "Skills or Markets",
+    "When did you start this company?",
+    "Are you registered or incorporated?",
+    "What do you do in detail?",
+    "What's different/interesting about your Startup?",
+"Question 1: What market are you addressing?",
+"Question 4: Who are the KEY customers and what is the customer profile?",
+"Question 5: How does your solution work?",
+"Question 36: Is you product  using now or will use it in the future (included in your road map) the following components:",
+]
+    advisor_dir_name: "data/processed_data/match-making/"
+    advisor_file_name: ["all_advisors.csv", "processed_advisor_form1hotencoding.csv"]
+    advisor_merge_cols: ["full name",
+    "emails",
+    "Job descriptions",
+    "skills",
+    "sub_skills",
+    "fields",
+    "industries",
+    "technologies",
+]
+    
+
+cleaning:
+    save_dir: "/Users/zarreen/Documents/HOLT/holt-final-delivery/data/interim/"
+    f6s_text_cols: [
+    "Key customers/users?",
+    "Brief Description",
+    "What do you do in detail?",
+    "What's different/interesting about your Startup?",
+    "product",
+    "customers",
+    "Using AI",
+    "Other tech"
+]
+    f6s_tab_cols: [
+    #     "City",
+    #     "Country",
+    "Skills or Markets",
+    "When did you start this company?",
+    "Are you registered or incorporated?",
+    "technology",
+    "vertical"
+]
+    f6s_dropna_cols: [
+        "Skills or Markets",
+        "When did you start this company?",
+        #         "Are you registered or incorporated?",
+        "vertical",
+        "technology"
+    ] 
+    adv_dropna_cols: ["skills", "fields"]
+    adv_drop_cols: ["Unnamed: 0", "Unnamed: 16", "*redacted*"]
+    adv_text_cols: ["jobtitle", "Job descriptions"]
+    adv_tab_cols: [
+    "advisor",
+    "full name",
+    "emails",
+    "jobtitle",
+    "Job descriptions",
+    "company",
+    "skills",
+    "sub_skills",
+    "fields",
+    "industries",
+    "technologies",
+]
+    
+    
+
+
+feature_engineering:
+    save_dir: "/Users/zarreen/Documents/HOLT/holt-final-delivery/data/interim/"
+    f6s_engg_drop_cols: [
+        "City",
+        "Country",
+        #         "Using AI",
+        #         "Other tech",
+        "text",
+        "Date Created",
+        "Application ID",
+    ]
+    f6s_engg_text_cols: [
+    "Key customers/users?",
+    "Brief Description",
+    "What do you do in detail?",
+    "What's different/interesting about your Startup?",
+    "product",
+    "customers",
+    "Using AI",
+    "Other tech"
+    ]
+    vector_size: 300
+    window: 40
+    f6s_non_text_dim_red: 300
+    f6s_text_dim_red: 300
+    f6s_concat_dim_red: 300
+    adv_non_text_dim_red: 25
+    adv_text_dim_red: 300
+    adv_concat_dim_red: 25
+    
+    
+
+company_clustering:
+    f6s_n_clusters: 232
+    f6s_max_iter: 10000
+    f6s_n_init: 100
+    f6s_cluster_cols: ["Startup/Person Name",
+                    "kmeans_cluster_concat",
+                    "kmeans_cluster_dist",
+                    "vertical",
+                    "technology",
+                    "Key customers/users?",
+                ]
+    save_dir: "/Users/zarreen/Documents/HOLT/holt-final-delivery/data/interim/"
+    f6s_save_file: "similar-company-clusters.csv"
+    adv_n_clusters: 20
+    adv_max_iter: 10000
+    adv_n_init: 100
+    adv_cluster_cols: ["advisor",
+        "jobtitle",
+        "company",
+        "skills",
+        "sub_skills",
+        "fields",
+        "industries",
+        "technologies",
+        "kmeans_cluster_concat",
+        "kmeans_cluster_dist",
+    ]
+    adv_save_file: "similar-advisors-clusters.csv"
+    
+
+
+matchmaking:
+    src_bucket_name: "holt"
+    dir_name: "data/processed_data/match-making/"
+    adv_file_names: ["all_advisors.csv", "All_feedback_final_version.csv"]
+    processed_dir: "/Users/octavioperez/Documents/PhD in Mathematics/02.- Second year/06.- Internship - JACOBB/Holt_final/holt-delivery/data/processed/"
+    report_dir: "/Users/zarreen/Documents/HOLT/holt-final-delivery/data/interim/"
+    report_files: ["similar-company-clusters.csv", "similar-advisors-clusters.csv"]
+    result_dir: "/Users/zarreen/Documents/HOLT/holt-final-delivery/data/results/"
+    result_file: "match-making-report.json"
+    grading_file_dir_name: "data/processed_data/match-making/"
+    grading_file_names: ['All_feedback.csv','emails_1.csv','companies_names_1.csv','companies_names_2.csv']
+    grading_cols: ["Email","Advisor_name","Company","Final name","Final score","Deal","Year"] 
+    
+    
+    
+    
+    
+    
+    
