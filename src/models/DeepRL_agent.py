@@ -128,7 +128,7 @@ class DeepAgent(object):
             if self.state_space == "Full":
                 input_t = tf.concat([self.input[t,:,:], tf.expand_dims(V_t, axis = 1)], axis=1)
                 input_t = tf.concat([input_t, self.layer_prev], axis=1)
-            elif self.state_space == "Reduced_2":
+            elif self.state_space == "Reduced_1":
                 input_t = tf.concat([self.input[t,:,:], self.layer_prev], axis=1)
             else:
                 input_t = self.input[t,:,:]
@@ -524,7 +524,6 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, epochs, display_plot
         paths = paths if state_space=="Full" else paths[:,:,[0,1,2,3,4,5,6,12]]
         paths_valid = paths_valid if state_space=="Full" else paths_valid[:,:,[0,1,2,3,4,5,6,12]]
         nbs_input       = paths.shape[2]
-        print(paths.shape[2])
 
         # Compile the neural network
         rl_network = DeepAgent(network, state_space, nbs_point_traj, batch_size, nbs_input, nbs_units, nbs_assets, cash_constraint, constraint_max, loss_type, lr, dropout_par, isput, prepro_stock, name)
@@ -630,12 +629,16 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, epochs, display_plot
 
         if display_plot == True:
             # Plot the learning curve on the train set, i.e. the CVaR on the train set at the end of each epoch
+            sns.set_theme(font_scale=3.5)
+            plt.rcParams['figure.figsize']=45,20
+            plt.rcParams['axes.prop_cycle'] = plt.cycler(color=["#8B2323", "#093885","#093885", "#FFB90F", "#FFB90F", "#CD5B45", "#FFB90F","#458B00"]) 
+            sns.set_style("whitegrid")
             lin_nb_epoch = np.linspace(1, loss_train_epoch.shape[0], loss_train_epoch.shape[0])
-            plt.figure(figsize=(5, 5), dpi=100)
-            plt.plot(lin_nb_epoch[1:], loss_train_epoch[1:,0],label="Train error")
-            plt.plot(lin_nb_epoch[1:], loss_train_epoch[1:,1],label="Test error")
-            plt.title(f"Loss function: {loss_type}")
-            plt.legend(loc='upper center', shadow=True, fontsize='x-large')
+            plt.plot(lin_nb_epoch[1:], loss_train_epoch[1:,0],label="Train error",linewidth=5.0)
+            plt.plot(lin_nb_epoch[1:], loss_train_epoch[1:,1],label="Test error",linestyle='dashed',linewidth=5.0)
+            plt.legend(fontsize="40")
+            plt.xlabel("Epochs")
+            plt.ylabel("Penalty function")
             plt.show()
     finally:
         #change dir back to original working directory (owd)
@@ -693,9 +696,8 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, option, moneyness, i
         name = f"{network}_{state_space}_dropout_{str(int(dropout_par*100))}_{loss_type}_TC_{ str(transacion_cost*100)}_{option}_{moneyness}_{cash_constraint_name}"
 
     #Re-defining the input based on the state space
-    paths = paths if state_space=="Full" else paths[:,:,[0,1,2,3,4,5,6,12]]
     paths_valid = paths_valid if state_space=="Full" else paths_valid[:,:,[0,1,2,3,4,5,6,12]]
-    nbs_input       = paths.shape[2]
+    nbs_input   = paths_valid.shape[2]
 
     # Compile the neural network
     rl_network = DeepAgent(network, state_space, nbs_point_traj, batch_size, nbs_input, nbs_units, nbs_assets, cash_constraint, constraint_max, loss_type, lr, dropout_par, isput, prepro_stock, name)

@@ -144,7 +144,7 @@ def load_standard_datasets(maturity, sigma = None):
     return Price_mat, S, betas, h_simulation
 
 
-def data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_simulation, trainphase = True, sigma = None, S_0 = 100, r = 0.009713920000000001, q = 0.01543706):
+def data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_simulation, r, q, trainphase = True, sigma = None):
     
     """Function that loads the sets to create the training set
 
@@ -209,7 +209,7 @@ def data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_s
       # - The feature vector for now is [S_n, T-t_n]; the portfolio value V_{n} will be added further into the code at each time-step
       if sigma is None:
         train_input     = np.zeros((n_timesteps+1, 400000,13)) #8, 13
-        test_input      = np.zeros((n_timesteps+1, 99000,13))
+        test_input      = np.zeros((n_timesteps+1, 100000,13))
         time_to_mat     = np.zeros(n_timesteps+1)
         time_to_mat[1:] = T / (n_timesteps)      # [0,h,h,h,..,h]
         time_to_mat     = np.cumsum(time_to_mat) # [0,h,2h,...,Nh]
@@ -223,13 +223,13 @@ def data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_s
         for i in range(6):
           train_input[:,:,7+i] = np.transpose(h_simulation[:,:,i])[:,0:400000]
 
-        test_input[:,:,0]  = Price_mat[:,400000:499000]
+        test_input[:,:,0]  = Price_mat[:,400000:]
         test_input[:,:,1]  = np.reshape(np.repeat(time_to_mat, test_input.shape[1], axis=0), (n_timesteps+1, test_input.shape[1]))
         for i in range(5):
-          test_input[:,:,2+i] = np.transpose(betas[:,:,i])[:,400000:499000]
+          test_input[:,:,2+i] = np.transpose(betas[:,:,i])[:,400000:]
         #test_input[:,:,7] = np.transpose(h_simulation[:,:,5])[:,400000:499000] if n_timesteps==63 else np.transpose(h_simulation[:,:])[:,400000:499000] #np.transpose(h_simulation[:,:,5])[:,400000:499000]
         for i in range(6):
-          test_input[:,:,7+i] = np.transpose(h_simulation[:,:,i])[:,400000:499000]
+          test_input[:,:,7+i] = np.transpose(h_simulation[:,:,i])[:,400000:]
       else:
         train_input     = np.zeros((n_timesteps+1, 400000,2)) #8, 13
         test_input      = np.zeros((n_timesteps+1, 99000,2))
@@ -253,7 +253,7 @@ def data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_s
       price_function = portfolio_value()
       price          = price_function.portfolio(S, strike, T, isput, r, q, betas, sigma)
       V_0_train      = np.ones(train_input.shape[1])*price[0:400000]  
-      V_0_test       = np.ones(test_input.shape[1])*price[400000:499000]
+      V_0_test       = np.ones(test_input.shape[1])*price[400000:]
 
     else:
         # Construct the train and test sets
@@ -285,7 +285,7 @@ def data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_s
     return option, n_timesteps, train_input, test_input, disc_batch, dividend_batch, V_0_train, V_0_test, strike
 
 
-def training_variables(maturity, moneyness, isput, prepro_stock, backtest, sigma = None):
+def training_variables(maturity, moneyness, isput, prepro_stock, backtest, r, q, sigma = None):
 
     """Function that loads the sets to create the training set
 
@@ -322,16 +322,14 @@ def training_variables(maturity, moneyness, isput, prepro_stock, backtest, sigma
         os.chdir(os.path.join(main_folder, f"data/processed/Training/"))
 
       Price_mat, S, betas, h_simulation = load_standard_datasets(maturity, sigma)
-      option, n_timesteps, train_input, test_input, disc_batch, dividend_batch, V_0_train, V_0_test, strike = data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_simulation, trainphase, sigma)
+      option, n_timesteps, train_input, test_input, disc_batch, dividend_batch, V_0_train, V_0_test, strike = data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_simulation, r, q, trainphase, sigma)
     finally:
       #change dir back to original working directory (owd)
       os.chdir(owd)
       
     return option, n_timesteps, train_input, test_input, disc_batch, dividend_batch, V_0_train, V_0_test, strike
   
-    
-if __name__ == "__main__":
-    main()
+
 
         
         

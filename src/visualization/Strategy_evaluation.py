@@ -306,7 +306,7 @@ def hedging_valuation_dataset(backtest, K, deltas, sigma, r = 0.0097139200000000
         Stock_paths = S
         betas_simulation = betas
     else:
-        number_simulations = 99000
+        number_simulations = 100000
         os.chdir(os.path.join(main_folder, f"data/processed/Training/"))
         _, S, betas, _, _ = load_standard_datasets(time_steps,sigma)
         Stock_paths = S[400000:,:]
@@ -333,10 +333,10 @@ def hedging_valuation_dataset(backtest, K, deltas, sigma, r = 0.0097139200000000
 
     return Stock_paths, implied_volatility_simulation
 
-def hedging_valuation(backtest, strikes, deltas, transaction_cost, isput, close_limit_days, sigma = None):
+def hedging_valuation(backtest, strikes, deltas, transaction_cost, isput, close_limit_days, r, q, sigma = None):
 
-    Stock_paths, implied_volatility_simulation = hedging_valuation_dataset(backtest, strikes, deltas, sigma)
-    new_evaluation       = strategy_hedging_valuation(transaction_cost,isput)
+    Stock_paths, implied_volatility_simulation = hedging_valuation_dataset(backtest, strikes, deltas, sigma, r, q)
+    new_evaluation       = strategy_hedging_valuation(transaction_cost,isput,r,q)
     hedging_portfolio, hedging_error, hedging_error_limit, cost_limit, option_price = new_evaluation.hedging_error_vector(strikes, Stock_paths, implied_volatility_simulation, deltas, None, None, close_limit_days)
     df_statistic_TC   = statistics(cost_limit)
     df_cost_functions = loss_functions(-1*hedging_error_limit)
