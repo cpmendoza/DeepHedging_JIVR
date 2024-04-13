@@ -1,0 +1,22 @@
+simulation:
+    number_simulations: 500000
+    #Number of paths to simulate
+    number_days: 21
+    #Option maturity
+    vol_lower_bound: 0.01
+    #Minimum threshold of 0.01 is applied to the volatility surface
+    size_step: 1/252
+    r: 0.026623194
+    #Annualized continuously compounded risk-free rate
+    q: 0.01772245
+    #Annualized underlying asset dividend yield
+    seed: 43
+    #seed to ensure replicability
+    number_simulations_batch: 160
+    #Simulation per batch to speed up the process
+    stock_price: 100
+    #Initial value of the stock price
+
+
+
+

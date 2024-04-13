@@ -521,9 +521,10 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, epochs, display_plot
             name = f"{network}_{state_space}_dropout_{str(int(dropout_par*100))}_{loss_type}_TC_{ str(transacion_cost*100)}_{option}_{moneyness}_{cash_constraint_name}"
 
         #Re-defining the input based on the state space
-        paths = paths if state_space=="Full" else paths[:,:,:8]
-        paths_valid = paths_valid if state_space=="Full" else paths_valid[:,:,:8]
+        paths = paths if state_space=="Full" else paths[:,:,[0,1,2,3,4,5,6,12]]
+        paths_valid = paths_valid if state_space=="Full" else paths_valid[:,:,[0,1,2,3,4,5,6,12]]
         nbs_input       = paths.shape[2]
+        print(paths.shape[2])
 
         # Compile the neural network
         rl_network = DeepAgent(network, state_space, nbs_point_traj, batch_size, nbs_input, nbs_units, nbs_assets, cash_constraint, constraint_max, loss_type, lr, dropout_par, isput, prepro_stock, name)
@@ -609,8 +610,8 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, epochs, display_plot
             name = f"{network}_{state_space}_dropout_{str(int(dropout_par*100))}_{loss_type}_TC_{ str(transacion_cost*100)}_{option}_{moneyness}_{cash_constraint_name}"
 
         #Re-defining the input based on the state space
-        paths = paths if state_space=="Full" else paths[:,:,:8]
-        paths_valid = paths_valid if state_space=="Full" else paths_valid[:,:,:8]
+        paths = paths if state_space=="Full" else paths[:,:,[0,1,2,3,4,5,6,12]]
+        paths_valid = paths_valid if state_space=="Full" else paths_valid[:,:,[0,1,2,3,4,5,6,12]]
         nbs_input       = paths.shape[2]
 
         # Compile the neural network
@@ -692,8 +693,8 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, option, moneyness, i
         name = f"{network}_{state_space}_dropout_{str(int(dropout_par*100))}_{loss_type}_TC_{ str(transacion_cost*100)}_{option}_{moneyness}_{cash_constraint_name}"
 
     #Re-defining the input based on the state space
-    paths = paths if state_space=="Full" else paths[:,:,:8]
-    paths_valid = paths_valid if state_space=="Full" else paths_valid[:,:,:8]
+    paths = paths if state_space=="Full" else paths[:,:,[0,1,2,3,4,5,6,12]]
+    paths_valid = paths_valid if state_space=="Full" else paths_valid[:,:,[0,1,2,3,4,5,6,12]]
     nbs_input       = paths.shape[2]
 
     # Compile the neural network
@@ -768,13 +769,19 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, epochs, display_plot
         os.chdir(os.path.join(main_folder, f"models/Random_{nbs_point_traj-1}/{option}/{moneyness}/TC_{transacion_cost*100}"))
         #os.chdir(os.path.join(main_folder, f"models/Random_{63}/{option}/{moneyness}/TC_{transacion_cost*100}"))
 
+        cash_constraint_name = f"CashC_{constraint_max}" if cash_constraint==True else "NoCashC"
         if loss_type == "CVaR":
-            name = f"{network}_dropout_{str(int(dropout_par*100))}_{loss_type}_{str(int(riskaversion*100))}_TC_{ str(transacion_cost*100)}_{option}_{moneyness}_cons_{constraint_max}"
+            name = f"{network}_{state_space}_dropout_{str(int(dropout_par*100))}_{loss_type}_{str(int(riskaversion*100))}_TC_{ str(transacion_cost*100)}_{option}_{moneyness}_{cash_constraint_name}"
         else:
-            name = f"{network}_dropout_{str(int(dropout_par*100))}_{loss_type}_TC_{ str(transacion_cost*100)}_{option}_{moneyness}_cons_{constraint_max}"
+            name = f"{network}_{state_space}_dropout_{str(int(dropout_par*100))}_{loss_type}_TC_{ str(transacion_cost*100)}_{option}_{moneyness}_{cash_constraint_name}"
+
+        #Re-defining the input based on the state space
+        paths = paths if state_space=="Full" else paths[:,:,[0,1,2,3,4,5,6,12]]
+        paths_valid = paths_valid if state_space=="Full" else paths_valid[:,:,[0,1,2,3,4,5,6,12]]
+        nbs_input       = paths.shape[2]
 
         print("---------------------------------------------------------------------")
-        print(f"---------------------- SAGE values - {loss_type} ----------------------------")
+        print(f"- SAGE values - {name} --")
         print("---------------------------------------------------------------------")
 
         cases  = [[0,1,2,3,4,5,6,7],[0,1,2,3,4,5,6],[0,1,2,3,4,5,7],[0,1,2,3,4,5],[0,1,2,3,4,6,7],[0,1,2,3,4,6],
