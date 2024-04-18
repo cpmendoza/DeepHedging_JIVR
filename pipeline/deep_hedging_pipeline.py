@@ -1,7 +1,7 @@
 """
 Usage:
-    1. cd src
-    2. python3 models/deep_rl_training.py 
+    1. cd pipeline
+    2. python3 deep_hedging_pipeline.py
 """
 
 import os, sys
