@@ -8,15 +8,13 @@ agent:
     #Price preprocessing {Log, Log-moneyness, Nothing}
     backtest: False                      
     #Backtest only includes inference procedure for real data
-    sigma: None                          
-    #Input value for GBM simulation 
 
     #First layer of parameters 
     network: "RNNFNN"             
     #Neural network architecture {"LSTM","RNNFNN","FFNN"}
     state_space: "Reduced_2"               
     #State space considered in the RL framework {"Full","Reduced_1","Reduced_2"}
-    cash_constraint: False                
+    cash_constraint: True                
     #Boolean variable to include cash constraints {True,False}
     constraint_max: 100                  
     #Cash constraint limit (positive number)
@@ -24,8 +22,6 @@ agent:
     #batch size {296,1000} 
     nbs_units: 56                   
     #neurons per layer/cell
-    nbs_assets: 1                    
-    #number of hedging intruments
     loss_type: "CVaR"               
     #loss function {"CVaR","MSE","SMSE"}
     lr: 0.0005               
@@ -38,12 +34,15 @@ agent:
     #Proportional transaction cost [0,5/10000,5/1000,1/100]
     riskaversion: 0.95                 
     #CVaR confidence level (0,1)
-    epochs: 3                    
+    epochs: 50                    
     #Number of epochs, training iterations 
 
     # Third layer of parameters
-    display_plot: True                 
+    display_plot: False                 
     #Display plot of training and validation loss
+    display_metrics: True
+    #Display metrics based on estimated values of penalty functions
+    #["Avg-HE","CVaR:95%","CVaR:99%","MSE","SMSE","Delta-CVaR:95%"]
 
 
 

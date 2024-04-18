@@ -513,7 +513,7 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, epochs, display_plot
     
     owd = os.getcwd()
     try:
-        os.chdir(os.path.join(main_folder, f"models/Random_{63}/{option}/{moneyness}/TC_{transacion_cost*100}"))
+        os.chdir(os.path.join(main_folder, f"models/Random_{nbs_point_traj-1}/{option}/{moneyness}/TC_{transacion_cost*100}"))
 
         cash_constraint_name = f"CashC_{constraint_max}" if cash_constraint==True else "NoCashC"
         if loss_type == "CVaR":
@@ -601,7 +601,7 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, epochs, display_plot
     owd = os.getcwd()
     try:
         #os.chdir(os.path.join(main_folder, f"models/Random_{nbs_point_traj-1}/{option}/{moneyness}/TC_{transacion_cost*100}"))
-        os.chdir(os.path.join(main_folder, f"models/Random_{63}/{option}/{moneyness}/TC_{transacion_cost*100}"))
+        os.chdir(os.path.join(main_folder, f"models/Random_{nbs_point_traj-1}/{option}/{moneyness}/TC_{transacion_cost*100}"))
 
         cash_constraint_name = f"CashC_{constraint_max}" if cash_constraint==True else "NoCashC"
         if loss_type == "CVaR":
@@ -689,7 +689,7 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, option, moneyness, i
     owd = os.getcwd()
     
     #os.chdir(os.path.join(main_folder, f"models/Random_{nbs_point_traj-1}/{option}/{moneyness}/TC_{transacion_cost*100}"))
-    os.chdir(os.path.join(main_folder, f"models/Random_{63}/{option}/{moneyness}/TC_{transacion_cost*100}"))
+    os.chdir(os.path.join(main_folder, f"models/Random_{nbs_point_traj-1}/{option}/{moneyness}/TC_{transacion_cost*100}"))
     cash_constraint_name = f"CashC_{constraint_max}" if cash_constraint==True else "NoCashC"
     if loss_type == "CVaR":
         name = f"{network}_{state_space}_dropout_{str(int(dropout_par*100))}_{loss_type}_{str(int(riskaversion*100))}_TC_{ str(transacion_cost*100)}_{option}_{moneyness}_{cash_constraint_name}"
@@ -717,7 +717,7 @@ dividend_batch, transacion_cost, riskaversion, paths_valid, option, moneyness, i
             os.chdir(os.path.join(main_folder, f"data/results/Backtest/Random_{nbs_point_traj-1}/{option}/{moneyness}/TC_{transacion_cost*100}"))
         else:
             #os.chdir(os.path.join(main_folder, f"data/results/Training/Random_{nbs_point_traj-1}/{option}/{moneyness}/TC_{transacion_cost*100}"))
-            os.chdir(os.path.join(main_folder, f"data/results/Training/Random_{63}/{option}/{moneyness}/TC_{transacion_cost*100}"))
+            os.chdir(os.path.join(main_folder, f"data/results/Training/Random_{nbs_point_traj-1}/{option}/{moneyness}/TC_{transacion_cost*100}"))
         
         np.save(f"{name}",np.transpose(deltas[:,:,0]))
 
