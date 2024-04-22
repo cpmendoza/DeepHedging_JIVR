@@ -259,7 +259,7 @@ def data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_s
         # Construct the train and test sets
       # - The feature vector for now is [S_n, T-t_n]; the portfolio value V_{n} will be added further into the code at each time-step
       train_input     = None
-      test_input      = np.zeros((n_timesteps+1, Price_mat.shape[1],8))
+      test_input      = np.zeros((n_timesteps+1, Price_mat.shape[1],13))
       time_to_mat     = np.zeros(n_timesteps+1)
       time_to_mat[1:] = T / (n_timesteps)      # [0,h,h,h,..,h]
       time_to_mat     = np.cumsum(time_to_mat) # [0,h,2h,...,Nh]
@@ -269,9 +269,9 @@ def data_sets_preparation(moneyness,isput,prepro_stock, Price_mat, S, betas, h_s
       test_input[:,:,1]  = np.reshape(np.repeat(time_to_mat, test_input.shape[1], axis=0), (n_timesteps+1, test_input.shape[1]))
       for i in range(5):
         test_input[:,:,2+i] = np.transpose(betas[:,:,i])
-      test_input[:,:,7] = np.transpose(h_simulation[:,:,5])
-      #for i in range(6):
-      #  test_input[:,:,7+i] = np.transpose(h_simulation[:,:,i])[:,400000:499000]
+      #test_input[:,:,7] = np.transpose(h_simulation[:,:,5])
+      for i in range(6):
+        test_input[:,:,7+i] = np.transpose(h_simulation[:,:,i])
 
       disc_batch            = np.exp(r*h)   # exp(rh)
       dividend_batch        = np.exp(q*h)   # exp(qh)
