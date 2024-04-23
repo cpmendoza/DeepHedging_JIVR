@@ -1,22 +1,20 @@
-## Hop Tech
+## Enhancing deep hedging of options with implied volatility surface feedback information
 
-This repository contains the deep learning models presented in 
-the report: "Non-invasive wearables for remote monitoring of HbA1c
-Author: Farnoosh Ghadiri, Carlos Perez Mendoza, Pierre Rosin".
+This repository contains the deep hedging environment used in our paper François et al. (2024), where we develop a dynamic hedging scheme for equity options that integrates information from a set of risk factors characterizing the implied volatility surface dynamics. This is achieved through a deep policy gradient-type reinforcement learning (RL) algorithm. The repository consists of two main components:
 
-- Sub-project 1: HbA1c level predection. 
-- Sub-project 2: Participnats classification into two classes,
-  diabetic and non-diabetic. 
+- Component 1: Environment generation based on the data-driven simulator JIVR introduced by François et al. (2023).
+- Component 2: Implementation of the RL agent for equity options.
 
 ## Short description
 
-Deep learning models are contained in the `src/models/` folder. 
+1. The environment simulators are contained in the `src/features/` folder.
 
-`regression_model.py` predicts the HbA1c level per participant based on hop
-watch signals.
+    - `nig_simulation.py` simulates NIG random vectors based on the joint distribution of the JIVR random component. This simulation considers the estimation performed using real market data, as outlined in François et al. (2022).
+    - `jivr_simulation.py` simulates the JIVR environment, including underlying stock returns, volatility, and risk factors that characterize the implied volatility surface dynamics.
 
-`classification_model.py` defines two classes diabetic and non-diabetic based
-on hop watch signals for each participant.
+2. Deep RL model is contained in the `src/models/` folder. 
+
+    - `deep_rl_agent.py` contrains a class that trains and assess the performance of RL agents based on the non-standard RNN-FNN architechture outlined in our paper François et al. (2024).
 
 Examples showcasing the utilization of the pipeline can be observed in the notebooks directory.
 The Python script (.py file) for executing the pipeline from the terminal can be found in the pipeline directory.
