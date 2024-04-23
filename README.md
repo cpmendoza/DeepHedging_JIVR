@@ -21,11 +21,11 @@ The Python script (.py file) for executing the pipeline from the terminal can be
 
 ## How to run
 
-1. Prerequisities
+1. **Prerequisities**
     - Python 3.9.6 was used as development environment.
     - The latest versions of pip
 
-2. Environment setup
+2. **Environment setup**
 
 - Clone the project repository:
 
@@ -49,7 +49,15 @@ pip install -r requirements.txt
 
 Alternatively, start with an empty virtual environment and install packages during execution on as-required basis.
 
-2. Data pre-processing utilities reside in `src/data/` folder. 
+3. **Modify parameters**
+
+The default parameters can be modified in the configuration files located in the cfgs folder:
+    - `config_simulation.yml`: General parameters for the simulation.
+    - `config_agent.yml`: Hyperparameters of the RL optimization problem.
+
+4. **Running the sript**
+
+Data pre-processing utilities reside in `src/data/` folder. 
 An example to run the pre-processing step is included in the notebook
 `data_preprocessing.ipynb`. 
 
