@@ -31,14 +31,14 @@ git clone https://github.com/OctavioPM/DeepHedging_JIVR.git
 cd DeepHedging_JIVR
 ```
 
-    - Create and activate a virtual environment:
+- Create and activate a virtual environment:
 
 ```nohighlight
 git clone https://github.com/OctavioPM/DeepHedging_JIVR.git
 cd DeepHedging_JIVR
 ```
 
-    - Install the requirements using `pip`
+- Install the requirements using `pip`
 
 ```nohighlight
 pip install -r requirements.txt
