@@ -52,8 +52,11 @@ Alternatively, start with an empty virtual environment and install packages duri
 3. **Modify parameters**
 
 The default parameters can be modified in the configuration files located in the cfgs folder:
-    - `config_simulation.yml`: General parameters for the simulation.
-    - `config_agent.yml`: Hyperparameters of the RL optimization problem.
+
+- `config_simulation.yml`: General parameters for the simulation.
+
+- `config_agent.yml`: Hyperparameters of the RL optimization problem.
+
 
 4. **Running the sript**
 
