@@ -24,20 +24,27 @@ The Python script (.py file) for executing the pipeline from the terminal can be
 1. Environment setup
 Python 3.9.6 was used as development environment.
 
-    - Clone the project repository
+    - Clone the project repository:
 
-### Explanation
+```nohighlight
+git clone https://github.com/OctavioPM/DeepHedging_JIVR.git
+cd DeepHedging_JIVR
+```
 
-- The triple backticks (\`\`\`) denote a code block in Markdown.
-- The "sh" after the first set of backticks indicates syntax highlighting for shell commands.
-- The "python" after the second set of backticks indicates syntax highlighting for Python code.
-- The text inside the code block is what the user can copy.
-- The "Copy" button can be created using JavaScript or a front-end framework like React, but this is typically done on the website where the README is displayed, not in the README file itself.
+    - Create and activate a virtual environment:
 
-Users can copy the code block by clicking the "Copy" button, or they can manually select and copy the code. This makes it easy for users to get started with your project's code.
+```nohighlight
+git clone https://github.com/OctavioPM/DeepHedging_JIVR.git
+cd DeepHedging_JIVR
+```
 
+    - Install the requirements using `pip`
 
-Create a Python virtual environment () and install the requirements.txt (`pip install -r requirements.txt`). Alternatively, start with an empty virtual environment and install packages during execution on as-required basis.
+```nohighlight
+pip install -r requirements.txt
+```
+
+Alternatively, start with an empty virtual environment and install packages during execution on as-required basis.
 
 2. Data pre-processing utilities reside in `src/data/` folder. 
 An example to run the pre-processing step is included in the notebook
