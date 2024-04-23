@@ -3,7 +3,7 @@
 This repository contains the deep hedging environment used in our paper François et al. (2024), where we develop a dynamic hedging scheme for equity options that integrates information from a set of risk factors characterizing the implied volatility surface dynamics. This is achieved through a deep policy gradient-type reinforcement learning (RL) algorithm. The repository consists of two main components:
 
 - Component 1: Environment generation based on the data-driven simulator JIVR introduced by François et al. (2023).
-- Component 2: Implementation of the RL agent for equity options.
+- Component 2: Implementation of the RL agent to hedge European options.
 
 ## Short description
 
@@ -14,15 +14,30 @@ This repository contains the deep hedging environment used in our paper Françoi
 
 2. Deep RL model is contained in the `src/models/` folder. 
 
-    - `deep_rl_agent.py` contrains a class that trains and assess the performance of RL agents based on the non-standard RNN-FNN architechture outlined in our paper François et al. (2024).
+    - `deep_rl_agent.py` contains a class that trains and assesses the performance of RL agents based on the non-standard RNN-FNN architecture outlined in our paper François et al. (2024).
 
 Examples showcasing the utilization of the pipeline can be observed in the notebooks directory.
 The Python script (.py file) for executing the pipeline from the terminal can be found in the pipeline directory.
 
 ## How to run
 
-1. Python 3.8 was used as development environment.
-Create a conda or Python virtual environment and install the requirements.txt (`pip install -r requirements.txt`). Alternatively, start with an empty virtual environment and install packages during execution on as-required basis.
+1. Environment setup
+Python 3.9.6 was used as development environment.
+
+    - Clone the project repository
+
+### Explanation
+
+- The triple backticks (\`\`\`) denote a code block in Markdown.
+- The "sh" after the first set of backticks indicates syntax highlighting for shell commands.
+- The "python" after the second set of backticks indicates syntax highlighting for Python code.
+- The text inside the code block is what the user can copy.
+- The "Copy" button can be created using JavaScript or a front-end framework like React, but this is typically done on the website where the README is displayed, not in the README file itself.
+
+Users can copy the code block by clicking the "Copy" button, or they can manually select and copy the code. This makes it easy for users to get started with your project's code.
+
+
+Create a Python virtual environment () and install the requirements.txt (`pip install -r requirements.txt`). Alternatively, start with an empty virtual environment and install packages during execution on as-required basis.
 
 2. Data pre-processing utilities reside in `src/data/` folder. 
 An example to run the pre-processing step is included in the notebook
