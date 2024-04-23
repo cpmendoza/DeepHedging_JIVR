@@ -21,10 +21,13 @@ The Python script (.py file) for executing the pipeline from the terminal can be
 
 ## How to run
 
-1. Environment setup
-Python 3.9.6 was used as development environment.
+1. Prerequisities
+    - Python 3.9.6 was used as development environment.
+    - The latest versions of pip
 
-    - Clone the project repository:
+2. Environment setup
+
+- Clone the project repository:
 
 ```nohighlight
 git clone https://github.com/OctavioPM/DeepHedging_JIVR.git
@@ -34,8 +37,8 @@ cd DeepHedging_JIVR
 - Create and activate a virtual environment:
 
 ```nohighlight
-git clone https://github.com/OctavioPM/DeepHedging_JIVR.git
-cd DeepHedging_JIVR
+python -m venv venv
+source venv/bin/activate
 ```
 
 - Install the requirements using `pip`
