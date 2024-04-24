@@ -9,12 +9,12 @@ This repository contains the deep hedging environment used in our paper, Franço
 
 1. The environment simulators, component 1, are contained in the `src/features/` folder. 
 
-    - `nig_simulation.py` simulates NIG random vectors based on the joint distribution of the JIVR random component. This simulation considers the estimation performed using real market data, as outlined in François et al. (2022).
-    - `jivr_simulation.py` simulates the JIVR environment, including underlying stock returns, volatility, and risk factors that characterize the implied volatility surface dynamics, theoretical simulations details can be found in François et al. (2024). 
+    - `nig_simulation.py` simulates NIG random vectors based on the joint distribution of the JIVR random component. This simulation incorporates the estimation conducted using real market data, as detailed in François et al. (2022).
+    - `jivr_simulation.py` simulates the JIVR environment, including underlying stock returns, volatility, and risk factors that characterize the implied volatility surface dynamics. Further theoretical simulation details can be found in François et al. (2024).
 
 2. Deep RL model, component 2, is contained in the `src/models/` folder. 
 
-    - `deep_rl_agent.py` contains all model functionalities through a python class that trains and assesses the performance of RL agents based on the non-standard RNN-FNN architecture outlined in our paper François et al. (2024).
+    - `deep_rl_agent.py` contains all model functionalities through a python class that trains and assesses the performance of RL agents based on the non-standard RNN-FNN architecture outlined in our paper.
 
 Examples showcasing the utilization of the pipeline can be observed in the notebooks directory.
 The Python script (.py file) for executing the pipeline from the terminal can be found in the pipeline directory.
