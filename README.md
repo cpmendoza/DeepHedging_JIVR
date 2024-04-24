@@ -56,22 +56,16 @@ pip install -r requirements.txt
 - `config_agent.yml`: Hyperparameters of the RL optimization problem.
 
 
-4. **Running the script**
+4. **Running the script**: We provide two options to run the deep hedging JIVR pipeline:
 
-We provide two options to run the deep hedging JIVR pipeline:
+- Option 1. The two main components of the pipeline can be executed independently following the example `deep_hedging_pipeline.ipynb` included in the `notebooks` folder. This notebook alredy outlines RL-CVaR agent performance metrics considered in Table 1 of our paper François et al. (2024).
 
-- Option 1. Notebook 
+- Option 2. The final pipeline can be executed from the terminal by using the following command in the `pipeline` folder: 
 
-- Option 2. python code
-
-
-Data pre-processing utilities reside in `src/data/` folder. 
-An example to run the pre-processing step is included in the notebook
-`data_preprocessing.ipynb`. 
-
-Model functionalities reside in `src/model/` folder. 
-The final pipeline can be executed from the terminal by using the following command in the `pipeline` folder: `python -m pipeline`.
-
+```nohighlight
+cd notebooks
+python -m pipeline
+```
 
 ## Directory structure
 
