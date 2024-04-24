@@ -47,11 +47,9 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Alternatively, start with an empty virtual environment and install packages during execution on as-required basis.
+- Alternatively, start with an empty virtual environment and install packages during execution on as-required basis.
 
-3. **Modify parameters**
-
-The default parameters can be modified in the configuration files located in the cfgs folder:
+3. **Modify parameters**: The default parameters can be modified in the configuration files located in the cfgs folder:
 
 - `config_simulation.yml`: General parameters for the simulation.
 
