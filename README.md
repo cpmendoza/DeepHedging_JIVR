@@ -88,21 +88,22 @@ python -m pipeline
 │
 ├── src                         <- Source code for use in this project.
 │   │
-│   ├── data                           <- Scripts to download or generate data.
-│   │   └── data_preprocessing.py      <- Script to transform data into the right format for the models.
+│   ├── data                    <- Scripts to download and generate data.
+│   │   └── data_loader.py         <- Script to transform data into the right format for the models.
 │   │
-│   ├── models                         <- Scripts to train models and then use trained models to make
-│   │   │                                 predictions
-│   │   ├── regression_model.py        <- Scripts to fit and make inference for the regression task.
-│   │   └── classification_model.py    <- Scripts to fit and make inference for the classification task.
+│   ├── features                   <- Scripts to generate market environment.
+│   │   ├── jivr_simulation.py     <- Script to generate JIVR model features.
+│   │   └── nig_simulation.py      <- Script to generate NIG random variables simulation.
 │   │
-│   └── visualization                  <- Scripts to compute performance metrics of the models.
-│   │   │
-│   │   ├── regression_metrics.py      <- Scripts to compute regression model performance metrics.
-│   │   └── classification_metrics.py  <- Scripts to compute classification model performance metrics.
+│   ├── models                     <- Scripts to train models and then use trained models to make
+│   │   │                             hedging strategies.
+│   │   ├── deep_rl_agent.py       <- Script create RL agents as class objects.
+│   │   └── deep_rl_training.py    <- Script to fit and make inference.
 │   │
-│   └── utils.py                <- data pre-processing utility.
+│   ├── visualization              <- Scripts to compute performance metrics of the models.
+│   │   └── strategy_evalution.py  <- Scripts to compute performance metrics.
+│   │
+│   └── utils.py                   <- data utility for configuration files.
 │ 
-│ 
-└── requirements.txt            <- The file for reproducing the pip-based virtual environment.
+└── requirements.txt               <- The file for reproducing the pip-based virtual environment.
 ```
