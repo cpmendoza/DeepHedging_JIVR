@@ -63,8 +63,8 @@ pip install -r requirements.txt
 - Option 2. The final pipeline can be executed from the terminal by using the following command in the `pipeline` folder: 
 
 ```nohighlight
-cd notebooks
-python -m pipeline
+cd pipeline
+python deep_hedging_pipeline.py
 ```
 
 ## Directory structure
