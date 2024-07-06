@@ -58,7 +58,7 @@ pip install -r requirements.txt
 
 4. **Running the script**: We provide two options to run the deep hedging JIVR pipeline:
 
-- Option 1. The two main components of the pipeline can be executed independently following the example `deep_hedging_pipeline.ipynb` included in the `notebooks` folder. This notebook alredy outlines RL-CVaR agent performance metrics considered in Table 1 of our paper François et al. (2024).
+- Option 1. The two main components of the pipeline can be executed independently following the example `deep_hedging_pipeline.ipynb` included in the `notebooks` folder. This notebook alredy outlines RL-CVaR agent performance metrics shown in Table 1 of our paper François et al. (2024).
 
 - Option 2. The final pipeline can be executed from the terminal by using the following command in the `pipeline` folder: 
 
